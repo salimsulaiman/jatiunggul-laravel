@@ -29,6 +29,13 @@
                 Produk
             </li>
         </a>
+        <a href="/sales" class="text-slate-400 hover:text-white">
+            <li
+                class="px-4 py-2 hover:bg-slate-700 cursor-pointer rounded-[8px] transition-all duration-200 ease-in-out flex items-center gap-4">
+                <i class="fa fa-money"></i>
+                Penjualan
+            </li>
+        </a>
         <div class="w-full h-[1px] bg-slate-600 my-4"></div>
     </ul>
     <!-- Tombol Tutup Drawer -->
