@@ -13,6 +13,11 @@ class CustomerController extends Controller
     public function index()
     {
         //
+        $customers = Customer::get();
+        return view('customers', [
+            'title' => 'Customers Data',
+            'customers' => $customers
+        ]);
     }
 
     /**
@@ -34,9 +39,14 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Customer $customer)
+    public function show(Customer $customer, String $id)
     {
         //
+        $customer = Customer::find($id);
+        return view('customer', [
+            'title' => $customer->name,
+            'customer' => $customer
+        ]);
     }
 
     /**
@@ -50,9 +60,18 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, Customer $customer, String $id)
     {
         //
+        $data = [
+            'name' => $request->input('name'),
+            'phone' => $request->input('notelp'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+        ];
+
+        Customer::where('id', $id)->update($data);
+        return redirect()->route('customers')->with('successUpdate','Berhasil update data');
     }
 
     /**

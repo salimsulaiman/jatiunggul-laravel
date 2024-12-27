@@ -22,7 +22,7 @@
                             <div class="label">
                                 <span class="label-text">Deskripsi</span>
                             </div>
-                            <textarea type="text" id="description" name="description" value="" class="input input-bordered w-full h-24"
+                            <textarea type="text" id="description" name="description" value="" class="input input-bordered w-full h-24 p-4"
                                 placeholder="Deskripsi barang"></textarea>
                         </label>
                         <label class="form-control w-full my-2" for="name">

@@ -11,29 +11,29 @@
         <a href="/" class="text-slate-400 hover:text-white">
             <li
                 class="px-4 py-2 hover:bg-slate-700 cursor-pointer rounded-[8px] transition-all duration-200 ease-in-out flex items-center gap-4">
-                <i class="fa fa-user-o"></i>
+                <i class="w-5 fa fa-user-o"></i>
                 User
             </li>
         </a>
         <a href="/categories" class="text-slate-400 hover:text-white">
             <li
                 class="px-4 py-2 hover:bg-slate-700 cursor-pointer rounded-[8px] transition-all duration-200 ease-in-out flex items-center gap-4">
-                <i class="fa fa-list"></i>
+                <i class="w-5 fa fa-list"></i>
                 Kategori
             </li>
         </a>
         <a href="/products" class="text-slate-400 hover:text-white">
             <li
                 class="px-4 py-2 hover:bg-slate-700 cursor-pointer rounded-[8px] transition-all duration-200 ease-in-out flex items-center gap-4">
-                <i class="fa fa-inbox"></i>
+                <i class="w-5 fa fa-inbox"></i>
                 Produk
             </li>
         </a>
-        <a href="/sales" class="text-slate-400 hover:text-white">
+        <a href="/customers" class="text-slate-400 hover:text-white">
             <li
                 class="px-4 py-2 hover:bg-slate-700 cursor-pointer rounded-[8px] transition-all duration-200 ease-in-out flex items-center gap-4">
-                <i class="fa fa-money"></i>
-                Penjualan
+                <i class="w-5 fa fa-users"></i>
+                Pelanggan
             </li>
         </a>
         <div class="w-full h-[1px] bg-slate-600 my-4"></div>

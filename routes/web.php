@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,6 @@ Route::post('/product', [ProductController::class, 'store'])->name('product.post
 Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.put');
 
-Route::get('/sales', function (){
-    return view('/sales', ['title' => 'test']);
-});
+Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
+Route::get('/customer/{id}', [CustomerController::class, 'show'])->name('customer.show');
+Route::put('/customer/{id}', [CustomerController::class, 'update'])->name('customer.put');
