@@ -45,7 +45,7 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
         return view('customer', [
             'title' => $customer->name,
-            'customer' => $customer
+            'customer' => $customer,
         ]);
     }
 

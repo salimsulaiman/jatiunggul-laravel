@@ -85,8 +85,7 @@
                                     </div>
                                 </dialog>
                                 <a href="/customer/{{ $customer->id }}"
-                                    class="btn bg-white border-1 border-green-600 text-green-600 hover:bg-green-600 hover:border-transparent hover:text-white btn-sm"
-                                    onclick="deleteUser{{ $customer->id }}.showModal()">Detail</a>
+                                    class="btn bg-white border-1 border-green-600 text-green-600 hover:bg-green-600 hover:border-transparent hover:text-white btn-sm">Detail</a>
                             </td>
                         </tr>
                     @endforeach

@@ -7,7 +7,9 @@
         </div>
         <div class="grid grid-cols-3 gap-12">
             <div class="w-full flex flex-col">
-                <div class="w-11/12 h-96 bg-slate-200 my-4 rounded-md"></div>
+                <div class="w-11/12 h-96 bg-slate-200 my-4 rounded-md overflow-hidden">
+                    <img src="/assets/image/avatar.png" alt="" class="object-cover w-full h-full object-center mt-4">
+                </div>
                 <h1 class="font-bold text-2xl">{{ $customer->name }}</h1>
                 <div class="flex gap-2 items-center">
                     <i class="fa fa-phone w-5 text-center"></i>
@@ -28,18 +30,40 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>Created</th>
-                            <th>Updated</th>
+                            <th>No nota</th>
+                            <th>Tanggal beli</th>
+                            <th>Total harga</th>
+                            <th>Terbayarkan</th>
+                            <th>Kekurangan</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($customer->sales as $index => $sale)
+                            <tr>
+                                <th>1</th>
+                                <td>{{ $sale->note_number }}</td>
+                                <td>{{ $sale->sales_date }}</td>
+                                <td class="w-32 truncate">@currency($sale->total_amount)</td>
+                                <td class="w-32 truncate">@currency($sale->down_payment)</td>
+                                <td class="w-32 truncate">@currency($sale->remaining_payment)</td>
+                                <td class="w-32 truncate">
+                                    <div class="badge w-full py-1 h-fit {{ $sale->payment_status == 0 ? 'bg-slate-500 text-white' : 'badge-success text-white' }}">
+                                        {{ $sale->payment_status == 0 ? 'Belum lunas' : 'Lunas' }}
+                                    </div>
+                                </td>
+                                <td class="flex justify-center items-center h-full">
+                                    <a href="/customer/{{ $customer->id }}" class="btn bg-white border-1 border-green-600 text-green-600 hover:bg-green-600 hover:border-transparent hover:text-white btn-sm min-h-full">
+                                        Detail
+                                    </a>
+                                </td>
+                                
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+              
             </div>
         </div>
         @if (session('successDelete'))
