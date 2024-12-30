@@ -16,9 +16,9 @@ class SaleSeeder extends Seeder
     public function run(): void
     {
         //
-        Sale::factory(20)->recycle([
-            Customer::all(),
-            User::all()
-        ])->create();
+        // Sale::factory(20)->recycle([
+        //     Customer::all(),
+        //     User::all()
+        // ])->create();
     }
 }

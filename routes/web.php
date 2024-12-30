@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleItemController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,6 @@ Route::put('/product/{id}', [ProductController::class, 'update'])->name('product
 Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
 Route::get('/customer/{id}', [CustomerController::class, 'show'])->name('customer.show');
 Route::put('/customer/{id}', [CustomerController::class, 'update'])->name('customer.put');
+
+Route::get('/saleitems/{id}', [SaleItemController::class, 'show'])->name('sale_item.show');
+Route::put('/saleitems/{id}', [SaleItemController::class, 'update'])->name('sale_item.put');

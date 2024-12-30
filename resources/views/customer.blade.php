@@ -7,8 +7,8 @@
         </div>
         <div class="grid grid-cols-3 gap-12">
             <div class="w-full flex flex-col">
-                <div class="w-11/12 h-96 bg-slate-200 my-4 rounded-md overflow-hidden">
-                    <img src="/assets/image/avatar.png" alt="" class="object-cover w-full h-full object-center mt-4">
+                <div class="w-11/12 h-96 my-4 rounded-md overflow-hidden">
+                    <img src="/assets/image/avatar.png" alt="" class="object-contain w-full h-full object-center mt-4">
                 </div>
                 <h1 class="font-bold text-2xl">{{ $customer->name }}</h1>
                 <div class="flex gap-2 items-center">
@@ -54,7 +54,7 @@
                                     </div>
                                 </td>
                                 <td class="flex justify-center items-center h-full">
-                                    <a href="/customer/{{ $customer->id }}" class="btn bg-white border-1 border-green-600 text-green-600 hover:bg-green-600 hover:border-transparent hover:text-white btn-sm min-h-full">
+                                    <a href="/saleitems/{{ $sale->id }}" class="btn bg-white border-1 border-green-600 text-green-600 hover:bg-green-600 hover:border-transparent hover:text-white btn-sm min-h-full">
                                         Detail
                                     </a>
                                 </td>

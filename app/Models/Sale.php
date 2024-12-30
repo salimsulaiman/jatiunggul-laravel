@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Sale extends Model
 {
@@ -16,6 +17,10 @@ class Sale extends Model
 
     protected $with = ['user', 'customer'];
 
+    protected $casts = [
+        'sales_date' => 'datetime',
+    ];
+
     public function customer():BelongsTo
     {
         return $this->belongsTo(Customer::class);
@@ -24,5 +29,10 @@ class Sale extends Model
     public function user():BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function sale_item():HasMany
+    {
+        return $this->hasMany(SaleItem::class);
     }
 }
