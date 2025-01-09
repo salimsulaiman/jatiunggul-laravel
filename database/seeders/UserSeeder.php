@@ -16,5 +16,13 @@ class UserSeeder extends Seeder
         //
 
         User::factory(5)->create();
+        User::create([
+            'name' => 'Salim Sulaiman',
+            'email' => 'salimsulaiman@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('salimsulaiman'),
+            'profile' => 'https://api.dicebear.com/9.x/initials/svg?seed=SalimSulaiman',
+            'role' => 'admin'
+        ]);
     }
 }

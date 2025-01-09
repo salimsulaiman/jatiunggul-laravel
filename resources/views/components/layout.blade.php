@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    @if (!request()->is('login') && !request()->is('signup'))
+    @if (!request()->is('login') && !request()->is('register'))
         <div class="w-full min-h-screen max-w-screen-xl mx-auto py-20 relative">
             <x-drawer></x-drawer>
             <x-navbar></x-navbar>

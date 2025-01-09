@@ -54,9 +54,9 @@
                         </li>
                         <li><a class="hover:bg-slate-800">Settings</a></li>
                         <li class="w-full hover:bg-slate-800 rounded-lg block">
-                            <form action="/logout" method="POST">
+                            <form action="/logout" method="POST" class="w-full">
                                 @csrf
-                                <button type="submit">Logout</button>
+                                <button type="submit" class="w-full">Logout</button>
                             </form>
                         </li>
                     </ul>
