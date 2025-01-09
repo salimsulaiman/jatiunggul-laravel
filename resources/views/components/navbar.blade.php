@@ -38,6 +38,30 @@
                     <span class="badge badge-xs badge-primary indicator-item"></span>
                 </div>
             </button>
+            @auth
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                            <img alt="Tailwind CSS Navbar component" src="{{ auth()->user()->profile }}" />
+                        </div>
+                    </div>
+                    <ul tabindex="0"
+                        class="menu menu-sm dropdown-content text-white bg-slate-700 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        <li>
+                            <a class="justify-between hover:bg-slate-800">
+                                {{ auth()->user()->name }}
+                            </a>
+                        </li>
+                        <li><a class="hover:bg-slate-800">Settings</a></li>
+                        <li class="w-full hover:bg-slate-800 rounded-lg block">
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <button type="submit">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @endauth
         </div>
     </div>
 </div>

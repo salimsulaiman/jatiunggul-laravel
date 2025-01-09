@@ -11,11 +11,15 @@
 </head>
 
 <body>
-    <div class="w-full min-h-screen max-w-screen-xl mx-auto py-20 relative">
-        <x-drawer></x-drawer>
-        <x-navbar></x-navbar>
+    @if (!request()->is('login') && !request()->is('signup'))
+        <div class="w-full min-h-screen max-w-screen-xl mx-auto py-20 relative">
+            <x-drawer></x-drawer>
+            <x-navbar></x-navbar>
+            {{ $slot }}
+        </div>
+    @else
         {{ $slot }}
-    </div>
+    @endif
 </body>
 <script src="{{ asset('js/script.js') }}"></script>
 

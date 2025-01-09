@@ -8,13 +8,17 @@
         <h4 class="text-white text-xl font-semibold">Jati<span class="font-normal">Unggul</span></h4>
     </div>
     <ul class="mt-4 px-4">
-        <a href="/" class="text-slate-400 hover:text-white">
-            <li
-                class="px-4 py-2 hover:bg-slate-700 cursor-pointer rounded-[8px] transition-all duration-200 ease-in-out flex items-center gap-4">
-                <i class="w-5 fa fa-user-o"></i>
-                User
-            </li>
-        </a>
+        @auth
+            @if (auth()->user()->role == 'admin')
+                <a href="/" class="text-slate-400 hover:text-white">
+                    <li
+                        class="px-4 py-2 hover:bg-slate-700 cursor-pointer rounded-[8px] transition-all duration-200 ease-in-out flex items-center gap-4">
+                        <i class="w-5 fa fa-user-o"></i>
+                        User
+                    </li>
+                </a>
+            @endif
+        @endauth
         <a href="/categories" class="text-slate-400 hover:text-white">
             <li
                 class="px-4 py-2 hover:bg-slate-700 cursor-pointer rounded-[8px] transition-all duration-200 ease-in-out flex items-center gap-4">
