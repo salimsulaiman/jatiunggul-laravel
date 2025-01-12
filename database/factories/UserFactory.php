@@ -25,10 +25,10 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'email' => fake()->unique()->userName() . '@gmail.com',
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
-            'profile' => fake()->text(20),
+            'profile' => 'https://api.dicebear.com/9.x/initials/svg?seed=' . fake()->text(20),
             'role' => fake()->randomElement(['admin', 'user']),
         ];
     }

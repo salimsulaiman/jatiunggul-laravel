@@ -9,17 +9,8 @@
                             d="M4 6h16M4 12h16M4 18h7" />
                     </svg>
                 </div>
-                {{-- <ul tabindex="0"
-                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                    <li><a href="/">User</a></li>
-                    <li><a href="/categories">Kategori</a></li>
-                    <li><a href="/products">Produk</a></li>
-                </ul> --}}
             </div>
         </div>
-        {{-- <div class="navbar-center">
-            <a class="cursor-pointer text-white text-xl">Jati Unggul</a>
-        </div> --}}
         <div class="navbar-end">
             <button class="btn btn-ghost hover:bg-slate-700 btn-circle">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="" viewBox="0 0 24 24"
@@ -38,8 +29,8 @@
                     <span class="badge badge-xs badge-primary indicator-item"></span>
                 </div>
             </button>
-            @auth
-                <div class="dropdown dropdown-end">
+            <div class="dropdown dropdown-end">
+                @auth
                     <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
                             <img alt="Tailwind CSS Navbar component" src="{{ auth()->user()->profile }}" />
@@ -54,14 +45,14 @@
                         </li>
                         <li><a class="hover:bg-slate-800">Settings</a></li>
                         <li class="w-full hover:bg-slate-800 rounded-lg block">
-                            <form action="/logout" method="POST" class="w-full">
+                            <form action="{{ route('logout') }}" method="POST" class="w-full flex">
                                 @csrf
-                                <button type="submit" class="w-full">Logout</button>
+                                <button type="submit" class="w-full text-start">Logout</button>
                             </form>
                         </li>
                     </ul>
-                </div>
-            @endauth
+                @endauth
+            </div>
         </div>
     </div>
 </div>

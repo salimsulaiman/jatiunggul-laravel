@@ -54,7 +54,6 @@ class RegisterController extends Controller
         'role' => 'user',
     ];
 
-    dd($request->all());
 
     $register = User::create($data);
 
