@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth'])->group(function (){
     Route::middleware(['admin'])->group(function (){
         Route::get('/', [UserController::class, 'index'])->name('users');
+        Route::get('/user/search', [UserController::class, 'search'])->name('users.search');
         Route::post('/', [UserController::class, 'store'])->name('user.post');
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
         Route::put('/{id}', [UserController::class, 'update'])->name('user.put');
@@ -25,11 +26,13 @@ Route::middleware(['auth'])->group(function (){
     Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.put');
 
     Route::get('/products', [ProductController::class, 'index'])->name('products');
+    Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
     Route::post('/product', [ProductController::class, 'store'])->name('product.post');
     Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.put');
 
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
+    Route::get('/customers/filter', [CustomerController::class, 'filterCustomer'])->name('customers.filter');
     Route::get('/customer/{id}', [CustomerController::class, 'show'])->name('customer.show');
     Route::put('/customer/{id}', [CustomerController::class, 'update'])->name('customer.put');
 

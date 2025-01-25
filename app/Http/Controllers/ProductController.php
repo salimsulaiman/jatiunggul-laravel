@@ -99,4 +99,16 @@ class ProductController extends Controller
         Product::where('id', $id)->delete($id);
         return redirect()->route('products')->with('successDelete','Berhasil hapus data');
     }
+
+    public function search(Request $request){
+        $search = $request->input('search');
+        $products = Product::where('name', 'like', '%' . $search . '%')->paginate(10)->withQueryString();
+          $categories = Category::get();
+
+        return view('products', [
+            'title' => 'Product Data',
+            'products' => $products,
+            'categories' => $categories
+        ]);
+    }
 }

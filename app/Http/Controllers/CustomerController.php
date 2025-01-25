@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -13,7 +14,7 @@ class CustomerController extends Controller
     public function index()
     {
         //
-        $customers = Customer::get();
+        $customers = Customer::paginate(10)->withQueryString();
         return view('customers', [
             'title' => 'Customers Data',
             'customers' => $customers
@@ -80,5 +81,31 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
+    }
+
+    public function filterCustomer(Request $request){
+        $startDate = $request->input('start_date'); // Default ke 1 Januari
+        $endDate = $request->input('end_date');     // Default ke 20 Januari
+        $search = $request->input('search'); // Ambil kata kunci pencarian
+        $startDate = Carbon::parse($startDate)->startOfDay();  // Mulai dari jam 00:00:00
+        $endDate = Carbon::parse($endDate)->endOfDay();        // Akhir hari pada jam 23:59:59
+        $customers = Customer::query()
+        ->when($search, function ($query, $search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                  ->orWhere('email', 'like', '%' . $search . '%');
+            });
+        })
+        ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('created_at', [$startDate, $endDate]);
+        })
+        ->orderBy('created_at', 'desc')
+        ->paginate(10)
+        ->withQueryString(); // Retain query parameters during pagination
+
+        return view('customers', [
+            'title' => 'Customer Data',
+            'customers' => $customers
+        ]);
     }
 }

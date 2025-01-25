@@ -20,13 +20,9 @@ class SaleItemSeeder extends Seeder
     {
         //
         SaleItem::factory(30)->recycle([
-            Sale::factory(20)->recycle([
-                Customer::all(),
-                User::all()
-            ])->create(),
-            Product::factory(20)->recycle([
-                Category::all()
-            ])->create()
+            Sale::all(),
+            Product::all()
+            
         ])->create();
     }
 }

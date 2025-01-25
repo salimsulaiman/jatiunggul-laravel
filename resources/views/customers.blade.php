@@ -1,8 +1,25 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="w-full px-6">
-        <div class="flex my-6 gap-4 items-center">
+        <div class="flex my-6 gap-4 items-center justify-between">
             <h1 class="text-slate-700 text-2xl">Data Pelanggan</h1>
+            <form action="{{ route('customers.filter') }}" method="GET" class="flex items-center gap-4">
+                <input type="date" class="input input-bordered w-full max-w-xs" name="start_date" id="start_date" />
+                -
+                <input type="date" class="input input-bordered w-full max-w-xs" name="end_date" id="end_date" />
+                <label class="input input-bordered flex items-center gap-2">
+                    <input type="search" class="grow" placeholder="Cari customers ..." name="search"
+                        autocomplete="off" value="{{ request('search') }}" />
+                    <button type="submit" class="flex items-center justify-center p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                            class="h-4 w-4 opacity-70">
+                            <path fill-rule="evenodd"
+                                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </label>
+            </form>
         </div>
         <div class="overflow-x-auto">
             <table class="table table-zebra">
@@ -22,7 +39,7 @@
                 <tbody>
                     @foreach ($customers as $index => $customer)
                         <tr>
-                            <th>{{ $index + 1 }}</th>
+                            <th>{{ ($customers->currentPage() - 1) * $customers->perPage() + $index + 1 }}</th>
                             <td>{{ $customer->name }}</td>
                             <td>{{ $customer->phone }}</td>
                             <td>{{ $customer->email == '' ? '-' : $customer->email }}</td>
@@ -34,7 +51,8 @@
                                     class="btn bg-white border-1 border-sky-600 text-sky-600 hover:bg-sky-600 hover:border-transparent hover:text-white btn-sm"
                                     @if ($customer->role == 'admin') disabled @endif
                                     onclick="updateCustomer{{ $customer->id }}.showModal()">Edit</button>
-                                <dialog id="updateCustomer{{ $customer->id }}" class="modal modal-bottom sm:modal-middle">
+                                <dialog id="updateCustomer{{ $customer->id }}"
+                                    class="modal modal-bottom sm:modal-middle">
                                     <div class="modal-box">
                                         <form method="POST"
                                             action="{{ route('customer.put', ['id' => $customer->id]) }}">
@@ -124,5 +142,6 @@
                 </div>
             </div>
         @endif
+        <div class="my-4">{{ $customers->links() }}</div>
     </div>
 </x-layout>

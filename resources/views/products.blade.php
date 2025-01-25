@@ -1,67 +1,81 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="w-full px-6">
-        <div class="flex my-6 gap-4 items-center">
-            <h1 class="text-slate-700 text-2xl">Data Produk</h1>
-            <button
-                class="btn bg-white border-1 border-green-600 text-green-600 hover:bg-green-600 hover:border-transparent hover:text-white btn-sm"
-                onclick="addProduct.showModal()">Tambah
-                Produk +</button>
-            <dialog id="addProduct" class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box">
-                    <form method="POST" action="{{ route('product.post') }}">
-                        <h3 class="text-lg font-bold">Tambah produk</h3>
-                        <label class="form-control w-full my-2" for="name">
-                            <div class="label">
-                                <span class="label-text">Nama</span>
+        <div class="flex my-6 gap-4 items-center justify-between">
+            <div class="flex gap-4">
+                <h1 class="text-slate-700 text-2xl">Data Produk</h1>
+                <button
+                    class="btn bg-white border-1 border-green-600 text-green-600 hover:bg-green-600 hover:border-transparent hover:text-white btn-sm"
+                    onclick="addProduct.showModal()">Tambah
+                    Produk +</button>
+                <dialog id="addProduct" class="modal modal-bottom sm:modal-middle">
+                    <div class="modal-box">
+                        <form method="POST" action="{{ route('product.post') }}">
+                            <h3 class="text-lg font-bold">Tambah produk</h3>
+                            <label class="form-control w-full my-2" for="name">
+                                <div class="label">
+                                    <span class="label-text">Nama</span>
+                                </div>
+                                <input type="text" id="name" name="name" value=""
+                                    class="input input-bordered w-full" placeholder="Nama barang" />
+                            </label>
+                            <label class="form-control w-full my-2" for="name">
+                                <div class="label">
+                                    <span class="label-text">Deskripsi</span>
+                                </div>
+                                <textarea type="text" id="description" name="description" value="" class="input input-bordered w-full h-24 p-4"
+                                    placeholder="Deskripsi barang"></textarea>
+                            </label>
+                            <label class="form-control w-full my-2" for="name">
+                                <div class="label">
+                                    <span class="label-text">Harga</span>
+                                </div>
+                                <input type="number" id="price" name="price" value=""
+                                    class="input input-bordered w-full" placeholder="Harga barang" />
+                            </label>
+                            <label class="form-control w-full my-2" for="name">
+                                <div class="label">
+                                    <span class="label-text">Stok</span>
+                                </div>
+                                <input type="number" id="stock" name="stock" value=""
+                                    class="input input-bordered w-full" placeholder="Stok barang" />
+                            </label>
+                            <label class="form-control w-full my-2" for="name">
+                                <div class="label">
+                                    <span class="label-text">Kategori</span>
+                                </div>
+                                <select class="select select-bordered w-full" id="category" name="category">
+                                    <option disabled selected>Kategori barang</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                            <div class="modal-action">
+                                @csrf
+                                <!-- if there is a button in form, it will close the modal -->
+                                <div class="flex gap-2">
+                                    <button class="btn btn-success text-white" type="submit">Tambah</button>
+                                    <button class="btn" type="button"
+                                        onclick="document.getElementById('addProduct').close()">Kembali</button>
+                                </div>
                             </div>
-                            <input type="text" id="name" name="name" value=""
-                                class="input input-bordered w-full" placeholder="Nama barang" />
-                        </label>
-                        <label class="form-control w-full my-2" for="name">
-                            <div class="label">
-                                <span class="label-text">Deskripsi</span>
-                            </div>
-                            <textarea type="text" id="description" name="description" value="" class="input input-bordered w-full h-24 p-4"
-                                placeholder="Deskripsi barang"></textarea>
-                        </label>
-                        <label class="form-control w-full my-2" for="name">
-                            <div class="label">
-                                <span class="label-text">Harga</span>
-                            </div>
-                            <input type="number" id="price" name="price" value=""
-                                class="input input-bordered w-full" placeholder="Harga barang" />
-                        </label>
-                        <label class="form-control w-full my-2" for="name">
-                            <div class="label">
-                                <span class="label-text">Stok</span>
-                            </div>
-                            <input type="number" id="stock" name="stock" value=""
-                                class="input input-bordered w-full" placeholder="Stok barang" />
-                        </label>
-                        <label class="form-control w-full my-2" for="name">
-                            <div class="label">
-                                <span class="label-text">Kategori</span>
-                            </div>
-                            <select class="select select-bordered w-full" id="category" name="category">
-                                <option disabled selected>Kategori barang</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </label>
-                        <div class="modal-action">
-                            @csrf
-                            <!-- if there is a button in form, it will close the modal -->
-                            <div class="flex gap-2">
-                                <button class="btn btn-success text-white" type="submit">Tambah</button>
-                                <button class="btn" type="button"
-                                    onclick="document.getElementById('addProduct').close()">Kembali</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </dialog>
+                        </form>
+                    </div>
+                </dialog>
+            </div>
+            <form action="{{ route('products.search') }}" method="GET">
+                <label class="input input-bordered flex items-center gap-2">
+                    <input type="search" class="grow" placeholder="Cari produk ..." name="search"
+                        autocomplete="off" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                        class="h-4 w-4 opacity-70">
+                        <path fill-rule="evenodd"
+                            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </label>
+            </form>
         </div>
         <div class="overflow-x-auto">
             <table class="table table-zebra">

@@ -14,9 +14,8 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        // Product::factory(20)->recycle([
-        //     Category::all()
-        // ])->create();
+       Product::factory(20)->recycle([
+                Category::all()
+            ])->create();
     }
 }

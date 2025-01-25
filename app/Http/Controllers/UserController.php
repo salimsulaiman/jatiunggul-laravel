@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::get();
+        $users = User::paginate(10)->withQueryString();
         return view('users', [
             'title' => 'User Data',
             'users' => $users
@@ -113,5 +113,15 @@ class UserController extends Controller
         //
         User::where('id', $id)->delete($id);
         return redirect()->route('users')->with('successDelete', 'Berhasil menghapus data');
+    }
+
+    public function search(Request $request){
+        $search = $request->input('search');
+        $users = User::where('name', 'like', '%' . $search . '%')->paginate(10)->withQueryString();
+
+        return view('users', [
+            'title' => 'User Data',
+            'users' => $users
+        ]);
     }
 }
